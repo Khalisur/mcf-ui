@@ -1,19 +1,29 @@
-import type { StorybookConfig } from "@storybook/react-vite";
+const tsconfigPaths = require("vite-tsconfig-paths");
 
-const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+module.exports = {
+  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
+    "storybook-dark-mode",
+    "@storybook/addon-a11y",
   ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
   },
+  features: {
+    storyStoreV7: true,
+    emotionAlias: false,
+  },
+  async viteFinal(config) {
+    return {
+      ...config,
+      plugins: [...config.plugins, tsconfigPaths.default()],
+    };
+  },
   docs: {
-    autodocs: "tag",
+    autodocs: true,
   },
 };
-export default config;
