@@ -1,8 +1,18 @@
 {
-  "name": "mcf-ui",
-  "private": true,
+  "name": "mcf-ui-library",
   "version": "0.0.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/mcf-ui-umd.cjs",
+  "module": "dist/mcf-ui.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mcf-ui.js",
+      "require": "./dist/mcf-ui-umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -19,6 +29,7 @@
     "framer-motion": "^6.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "vite-plugin-dts": "^3.7.3",
     "vite-tsconfig-paths": "^4.3.1"
   },
   "devDependencies": {
