@@ -1,17 +1,21 @@
 import {
   Button as ChakraButton,
   ButtonProps as ChakraButtonProps,
+  ChakraProvider,
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
+import { theme } from "../../utils/theme/theme";
 
 type ButtonProps = ChakraButtonProps;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, variant = "outline | solid", ...props }, ref) => {
+  ({ children, variant = "solid", ...props }, ref) => {
     return (
-      <ChakraButton {...props} variant={variant} ref={ref}>
-        {children}
-      </ChakraButton>
+      <ChakraProvider theme={theme}>
+        <ChakraButton {...props} variant={variant} ref={ref}>
+          {children}
+        </ChakraButton>
+      </ChakraProvider>
     );
   }
 );
