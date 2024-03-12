@@ -17,7 +17,13 @@ export default defineConfig({
       fileName: "mcf-ui",
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "@emotion/react",
+        "@emotion/styled",
+      ],
       output: {
         globals: {
           react: "React",

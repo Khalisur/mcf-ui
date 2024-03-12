@@ -1,6 +1,6 @@
 {
   "name": "mcf-ui-library",
-  "version": "0.0.01",
+  "version": "0.0.02",
   "type": "module",
   "files": [
     "dist"
