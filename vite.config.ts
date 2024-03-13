@@ -2,6 +2,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import compression from "vite-plugin-compression2";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,6 +17,7 @@ export default defineConfig({
       name: "McfUI",
       fileName: "mcf-ui",
     },
+    minify: true,
     rollupOptions: {
       external: [
         "react",
@@ -23,6 +25,7 @@ export default defineConfig({
         "react/jsx-runtime",
         "@emotion/react",
         "@emotion/styled",
+        "@chakra-ui/react",
       ],
       output: {
         globals: {
@@ -32,5 +35,16 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), dts({ rollupTypes: true })],
+  plugins: [
+    react(),
+    dts({ rollupTypes: true }),
+    compression({
+      algorithm: "gzip",
+      exclude: [/\.(br)$ /, /\.(gz)$/],
+    }),
+    compression({
+      algorithm: "brotliCompress",
+      exclude: [/\.(br)$ /, /\.(gz)$/],
+    }),
+  ],
 });
