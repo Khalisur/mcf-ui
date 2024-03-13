@@ -14,7 +14,6 @@ module.exports = {
     options: {},
   },
   features: {
-    storyStoreV7: true,
     emotionAlias: false,
   },
   async viteFinal(config) {
